@@ -1,0 +1,78 @@
+syntax="proto3";
+import "google/protobuf/empty.proto";
+package grpc;
+message AddKaryawanReq{
+    string Nama=1;
+    string Alamat=2;
+    string Telepon=3;
+    string Email=4;
+    string IDJabatan=5;
+    string IDBagian=6;
+    int32 Status=7;
+    string CreatedBy=8;
+    string CreatedOn=9;
+    string UpdatedBy=10;
+    string UpdatedOn=11;
+    string Keterangan=12;
+}
+message ReadKaryawan{
+    string IDKaryawan=1;
+    string Nama=2;
+    string Alamat=3;
+    string Telepon=4;
+    string Email=5;
+    string IDJabatan=6;
+    string IDBagian=7;
+    int32 Status=8;
+    string CreatedBy=9;
+    string CreatedOn=10;
+    string UpdatedBy=11;
+    string UpdatedOn=12;
+    string Keterangan=13;
+}
+
+message ReadKaryawanByJabatanReq{
+    string IDJabatan=1;
+}
+message ReadKaryawanByJabatanResp{
+    repeated ReadKaryawan allJabatan=1;
+}
+message ReadKaryawanByBagianReq{
+    string IDBagian=1;
+}
+message ReadKaryawanByBagianResp{
+    repeated ReadKaryawan allBagian=1;
+}
+
+message ReadKaryawanByKeteranganReq{
+    string Keterangan=1;
+}
+message ReadKaryawanByKeteranganResp{
+    repeated ReadKaryawan allKeterangan=1;
+}
+message ReadKaryawanResp{ 
+    repeated ReadKaryawan allKaryawan=1;
+}
+message UpdateKaryawanReq{
+    string IDKaryawan=1;
+    string Nama=2;
+    string Alamat=3;
+    string Telepon=4;
+    string Email=5;
+    string IDJabatan=6;
+    string IDBagian=7;
+    int32 Status=8;
+    string CreatedBy=9;
+    string CreatedOn=10;
+    string UpdatedBy=11;
+    string UpdatedOn=12;
+    string Keterangan=13;
+}
+service KaryawanService{
+    rpc AddKaryawan(AddKaryawanReq) returns (google.protobuf.Empty) {};
+    rpc ReadKaryawanByJabatan(ReadKaryawanByJabatanReq) returns (ReadKaryawanByJabatanResp) {};
+    rpc ReadKaryawanByBagian(ReadKaryawanByBagianReq) returns (ReadKaryawanByBagianResp){};
+    rpc ReadKaryawanByKeterangan(ReadKaryawanByKeteranganReq) returns (ReadKaryawanByKeteranganResp){};
+    rpc ReadKaryawan(google.protobuf.Empty) returns (ReadKaryawanResp){};
+    rpc UpdateKaryawan(UpdateKaryawanReq) returns (google.protobuf.Empty){};
+}

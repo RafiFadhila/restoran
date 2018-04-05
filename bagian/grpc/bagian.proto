@@ -1,0 +1,45 @@
+syntax="proto3";
+import "google/protobuf/empty.proto";
+package grpc;
+message AddBagianReq{
+    string IDBagian=1; 
+    string NamaBagian=2;
+    string Deskripsi=3;
+    int32 Status=4;
+    string CreatedBy=5;
+    string CreatedOn=6;
+    string UpdatedBy=7;
+    string UpdateOn=8;
+}
+message ReadBagian{ 
+    string IDBagian=1; 
+    string NamaBagian=2;
+    string Deskripsi=3;
+    int32 Status=4;
+    string CreatedBy=5;
+    string CreatedOn=6;
+    string UpdatedBy=7;
+    string UpdateOn=8;
+}
+message ReadBagianAktifResp{ 
+    repeated ReadBagian allAktif=1;
+    }
+message ReadBagianResp{ 
+repeated ReadBagian allBagian=1;
+}
+message UpdateBagianReq{
+    string IDBagian=1; 
+    string NamaBagian=2;
+    string Deskripsi=3;
+    int32 Status=4;
+    string CreatedBy=5;
+    string CreatedOn=6;
+    string UpdatedBy=7;
+    string UpdateOn=8;
+}
+service BagianService{
+    rpc AddBagian(AddBagianReq) returns (google.protobuf.Empty) {};
+    rpc ReadBagianAktif(google.protobuf.Empty) returns (ReadBagianAktifResp) {};
+    rpc ReadBagian(google.protobuf.Empty) returns (ReadBagianResp){};
+    rpc UpdateBagian(UpdateBagianReq) returns (google.protobuf.Empty){};
+}

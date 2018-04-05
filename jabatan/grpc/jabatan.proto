@@ -1,0 +1,49 @@
+syntax ="proto3";
+import "google/protobuf/empty.proto";
+package grpc;
+
+message AddJabatanReq{
+    string Jabatan=1;
+    int64 Gaji=2;
+    int32 Status=3;
+    string CreatedBy=4;
+    string CreatedOn=5;
+    string UpdatedBy=6;
+    string UpdateOn=7;
+}
+
+message ReadJabatan{
+    string IDJabatan=1;
+    string jabatan=2;
+    int64 Gaji=3;
+    int32 Status=4;
+    string CreatedBy=5;
+    string CreatedOn=6;
+    string UpdatedBy=7;
+    string UpdateOn=8;
+}
+
+message ReadJabatanAktifResp{
+    repeated ReadJabatan allStatus=1;
+    }
+
+message ReadJabatanResp{
+repeated ReadJabatan allJabatan=1;
+}
+
+message UpdateJabatanReq{
+    string IDJabatan=1;
+    string Jabatan=2;
+    int64 Gaji=3;
+    int32 Status=4;
+    string CreatedBy=5;
+    string CreatedOn=6;
+    string UpdatedBy=7;
+    string UpdateOn=8;
+}
+service JabatanService{
+    rpc AddJabatan(AddJabatanReq) returns (google.protobuf.Empty) {};
+    rpc ReadJabatanAktif(google.protobuf.Empty) returns (ReadJabatanAktifResp) {};
+    rpc ReadJabatan(google.protobuf.Empty) returns (ReadJabatanResp){};
+    rpc UpdateJabatan(UpdateJabatanReq) returns (google.protobuf.Empty){};
+}
